@@ -1,16 +1,14 @@
 import * as vscode from 'vscode';
 
+// import { AstProvider } from './file-arrangement/services';
+
 export class CommandRegistrator {
   public registerAllCommands(context: vscode.ExtensionContext): void {
-    const arrangeFileCommand = vscode.commands.registerCommand('extension.arrangeFile', () => {
-      try {
-        vscode.window.showInformationMessage('tra');
+    // const service = new AstProvider();
+    // const arrangeFileCommand = vscode.commands.registerCommand('extension.arrangeFile', () => {
+    //   service.parseTree();
+    // });
 
-      } catch (err) {
-        vscode.window.showErrorMessage(err.message);
-      }
-    });
-
-    context.subscriptions.push(arrangeFileCommand);
+    // context.subscriptions.push(arrangeFileCommand);
   }
 }

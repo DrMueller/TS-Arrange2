@@ -1,0 +1,1 @@
+https://github.com/Microsoft/vscode-docs/blob/0d5e75bf7fdea241e8b86da734bfda03d9d4c1de/docs/extensions/example-tree-explorer.md

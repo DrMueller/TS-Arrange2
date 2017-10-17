@@ -21,7 +21,8 @@
     "activationEvents": [
         "*"
     ],
-    "main": "./out/src/extension",
+    "main": "./out/src/extension",  
+    "enableProposedApi": true,    
     "contributes": {
         "commands": [
             {
@@ -47,7 +48,8 @@
         "@types/sinon": "2.1.2",
         "mocha": "^2.3.3",
         "typescript": "2.5.3",
-        "vscode": "^1.0.0"
+        "vscode": "1.1.5",
+        "inversify": "4.3.0"
     },
     "icon": "assets/T.PNG"
 }
