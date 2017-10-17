@@ -1,1 +1,1 @@
-export * from './command-regististrator';
+export * from './command-registrator';

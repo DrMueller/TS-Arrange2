@@ -1,17 +1,23 @@
 {
   "compilerOptions": {
-      "module": "commonjs",
-      "target": "es6",
-      "outDir": "out",
-      "strictNullChecks": true,
-      "lib": [
-          "es6"
-      ],
-      "sourceMap": true,
-      "rootDir": "."
+    "module": "commonjs",
+    "target": "es6",
+    "outDir": "out",
+    "strictNullChecks": true,
+    "experimentalDecorators": true,
+    "lib": [
+      "es6"
+    ],
+    "sourceMap": true,
+    "rootDir": ".",
+    //  "baseUrl": "./src", Doesnt seem to work atm
+    "types": [
+      "reflect-metadata"
+    ],
+    "emitDecoratorMetadata": true
   },
   "exclude": [
-      "node_modules",
-      ".vscode-test"
+    "node_modules",
+    ".vscode-test"
   ]
 }

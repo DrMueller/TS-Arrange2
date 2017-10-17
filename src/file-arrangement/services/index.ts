@@ -1,1 +1,2 @@
-export * from './ast-provider.service';
+export * from './editor.service.interface';
+export * from './source-file-factory.service.interface';
