@@ -1,5 +1,6 @@
 {
   "name": "ts-arrange",
+  "enableProposedApi": true,
   "displayName": "ts-arrange",
   "description": "TypeScript code anrrangement",
   "version": "0.0.1",
@@ -22,7 +23,6 @@
     "*"
   ],
   "main": "./out/src/extension",
-  "enableProposedApi": true,
   "contributes": {
     "commands": [
       {

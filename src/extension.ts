@@ -1,10 +1,9 @@
 import * as vscode from 'vscode';
 
-import { CommandRegistrator } from '.';
+import { InitializationService } from './infrastructure/initialization';
 
 export function activate(context: vscode.ExtensionContext) {
-  const registrator = new CommandRegistrator();
-  registrator.registerAllCommands(context);
+  InitializationService.initializeExtension(context);
 }
 
 export function deactivate() {

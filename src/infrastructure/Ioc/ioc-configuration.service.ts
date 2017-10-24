@@ -1,9 +1,8 @@
 import { Container } from 'inversify';
 import 'reflect-metadata';
 
-import * as faServices from '../../file-arrangement/services';
-import * as faServicesImpl from '../../file-arrangement/services/implementation';
 import { IocContainerSingleton } from './ioc-container.singleton';
+import * as mh from './mapping-handlers';
 
 export class IocInitializationService {
   public static initialize(): void {
@@ -13,7 +12,9 @@ export class IocInitializationService {
   }
 
   private static applyMappings(container: Container): void {
-    container.bind<faServices.IEditorService>(faServices.EditorServiceName).to(faServicesImpl.EditorService);
-    container.bind<faServices.ISourceFileFactory>(faServices.SourceFileFactoryName).to(faServicesImpl.SourceFileFactory);
+    mh.FileArrangementMappingHandler.applyMappings(container);
+    mh.DocumentHandlingMappingHandler.applyMappings(container);
+    mh.ConfigurationMappingHandler.applyMappings(container);
+    mh.ElementCreationMappingHandler.applyMappings(container);
   }
 }

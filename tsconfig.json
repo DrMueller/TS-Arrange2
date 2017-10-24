@@ -5,12 +5,17 @@
     "outDir": "out",
     "strictNullChecks": true,
     "experimentalDecorators": true,
+    // "noUnusedLocals": true,
+    "allowUnreachableCode": false,
+    // "allowUnusedLabels": false,
+    "noImplicitReturns": true,
+    "forceConsistentCasingInFileNames": true,
+    "noStrictGenericChecks": false,
     "lib": [
       "es6"
     ],
     "sourceMap": true,
     "rootDir": ".",
-    //  "baseUrl": "./src", Doesnt seem to work atm
     "types": [
       "reflect-metadata"
     ],
