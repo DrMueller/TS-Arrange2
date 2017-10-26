@@ -22,10 +22,8 @@ export class FileArragementService implements IFileArrangemengService {
     const configuration = await this.configurationFactory.createConfigurationAsync();
 
     this.sortingHandler.sortElementsByConfiguration(elements, configuration);
-    
     const resultText = elements.writeAll();
 
-    debugger;
     this.editorService.writeTextToActiveDocument(resultText);
   }
 }

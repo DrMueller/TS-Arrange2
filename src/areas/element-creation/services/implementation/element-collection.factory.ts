@@ -2,7 +2,7 @@ import { inject, injectable } from 'inversify';
 import { Node, SourceFile, SyntaxKind } from 'typescript';
 
 import { IElementCollectionFactory } from '..';
-import { Element, ElementCollection, ElementKindType } from '../../../common/models';
+import { IElement, ElementCollection, ElementKindType } from '../../../common/models';
 import {
   INodeElementMappingHandler, INodeFindingHandler, NodeElementMappingHandlerName,
   NodeFindingHandlerName
@@ -28,34 +28,13 @@ export class ElementCollectionFactory implements IElementCollectionFactory {
     return result;
   }
 
-  private getBodyElements(classBodyNode: Node): Element[] {
-    const result = new Array<Element>();
+  private getBodyElements(classBodyNode: Node): IElement[] {
     const children = classBodyNode.getChildren();
+    const mainNodes = children.filter(f => f.kind === SyntaxKind.PropertyDeclaration || f.kind === SyntaxKind.MethodDeclaration);
 
-    this.applyMethods(children, result);
-    this.applyProperties(children, result);
-
+    const result = mainNodes.map(f => {
+      return this.nodeElementMappingHandler.mapToElement(f);
+    });
     return result;
   }
-
-  private applyProperties(nodes: Node[], elements: Element[]): void {
-    const properties = nodes.filter(f => f.kind === SyntaxKind.PropertyDeclaration);
-
-    const propertyElements = properties.map(n => {
-      return this.nodeElementMappingHandler.mapToElement(n, ElementKindType.Property);
-    });
-
-    elements.push(...propertyElements);
-  }
-
-  private applyMethods(nodes: Node[], elements: Element[]): void {
-    const methods = nodes.filter(f => f.kind === SyntaxKind.MethodDeclaration);
-
-    const methodElements = methods.map(n => {
-      return this.nodeElementMappingHandler.mapToElement(n, ElementKindType.Method);
-    });
-
-    elements.push(...methodElements);
-  }
-
 }

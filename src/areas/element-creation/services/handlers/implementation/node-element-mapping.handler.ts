@@ -4,21 +4,27 @@ import { getCombinedModifierFlags, ModifierFlags, Node } from 'typescript';
 
 import { INodeElementMappingHandler } from '..';
 import {
-  Element, ElementKind, ElementKindType, ElementLocation, ElementLocationType, ElementVisibility,
+  IElement, ElementKind, ElementKindType, ElementLocation, ElementLocationType, ElementVisibility,
   ElementVisibilityType
 } from '../../../../common/models';
 
+import {
+  ConstructorElement, MethodElement
+} from '../../../../common/models/element-types';
+
 @injectable()
 export class NodeElementMappingHelper implements INodeElementMappingHandler {
-  public mapToElement(node: Node, kindType: ElementKindType): Element {
-    const location = this.evaluateLocation(node);
+  public mapToElement(node: Node): IElement {
     const visibility = this.evaluateVisibility(node);
-    const kind = new ElementKind(kindType);
 
     const text = node.getFullText();
 
-    const result = new Element(visibility, location, kind, text);
-    return result;
+    if (kindType === ElementKindType.Constructor) {
+      return new ConstructorElement(visibility, kind, text);
+    }
+
+    const location = this.evaluateLocation(node);
+    return new MethodElement(visibility, location, kind, text);
   }
 
   private evaluateLocation(node: Node): ElementLocation {
