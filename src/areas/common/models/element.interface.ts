@@ -1,4 +1,4 @@
 export interface IElement {
-  getConfigFormat(): string;
+  getConfigKey(): string;
   getText(): string;
 }

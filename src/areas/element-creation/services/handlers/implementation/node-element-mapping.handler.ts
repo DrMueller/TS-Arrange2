@@ -1,30 +1,46 @@
 import { injectable } from 'inversify';
+import { getCombinedModifierFlags, ModifierFlags, Node, SyntaxKind } from 'typescript';
 
-import { getCombinedModifierFlags, ModifierFlags, Node } from 'typescript';
-
-import { INodeElementMappingHandler } from '..';
+import { INodeElementMappingHandler, MappingResult } from '..';
 import {
-  IElement, ElementKind, ElementKindType, ElementLocation, ElementLocationType, ElementVisibility,
-  ElementVisibilityType
+  ElementLocation, ElementLocationType, ElementVisibility, ElementVisibilityType, IElement
 } from '../../../../common/models';
-
 import {
-  ConstructorElement, MethodElement
+  ConstructorElement, MethodElement, FieldElement, UnknownElement
 } from '../../../../common/models/element-types';
 
 @injectable()
 export class NodeElementMappingHelper implements INodeElementMappingHandler {
-  public mapToElement(node: Node): IElement {
+  public mapToElement(node: Node): MappingResult {
+
     const visibility = this.evaluateVisibility(node);
+    const nodeText = node.getFullText();
 
-    const text = node.getFullText();
-
-    if (kindType === ElementKindType.Constructor) {
-      return new ConstructorElement(visibility, kind, text);
+    if (node.kind === SyntaxKind.Constructor) {
+      const ctorElement = new ConstructorElement(visibility, nodeText);
+      return MappingResult.createdMapped(ctorElement);
     }
 
     const location = this.evaluateLocation(node);
-    return new MethodElement(visibility, location, kind, text);
+    if (node.kind === SyntaxKind.PropertyDeclaration) {
+      const propertyElement = new FieldElement(visibility, location, nodeText);
+      return MappingResult.createdMapped(propertyElement);
+    }
+
+    // We unite some kinds under methodDeclaration
+    if (this.checkIfNodeIsMethodType(node)) {
+      const methodElement = new MethodElement(visibility, location, nodeText);
+      return MappingResult.createdMapped(methodElement);
+    }
+
+    const unknownElement = new UnknownElement(nodeText);
+    return MappingResult.createdMapped(unknownElement);
+  }
+
+  private checkIfNodeIsMethodType(node: Node): boolean {
+    return node.kind === SyntaxKind.MethodDeclaration
+      || node.kind === SyntaxKind.GetAccessor
+      || node.kind === SyntaxKind.SetAccessor;
   }
 
   private evaluateLocation(node: Node): ElementLocation {
@@ -47,11 +63,11 @@ export class NodeElementMappingHelper implements INodeElementMappingHandler {
 
     const modifierFlags = getCombinedModifierFlags(node);
 
-    if (modifierFlags === ModifierFlags.Public) {
+    if (modifierFlags & ModifierFlags.Public) {
       visibilityType = ElementVisibilityType.Public;
-    } else if (modifierFlags === ModifierFlags.Protected) {
+    } else if (modifierFlags & ModifierFlags.Protected) {
       visibilityType = ElementVisibilityType.Protected;
-    } else if (modifierFlags === ModifierFlags.Private) {
+    } else if (modifierFlags & ModifierFlags.Private) {
       visibilityType = ElementVisibilityType.Private;
     } else {
       visibilityType = ElementVisibilityType.Unknown;

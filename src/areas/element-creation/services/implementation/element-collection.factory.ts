@@ -1,12 +1,13 @@
 import { inject, injectable } from 'inversify';
-import { Node, SourceFile, SyntaxKind } from 'typescript';
+import { Node, SourceFile } from 'typescript';
 
 import { IElementCollectionFactory } from '..';
-import { IElement, ElementCollection, ElementKindType } from '../../../common/models';
+import { IElement, ElementCollection } from '../../../common/models';
 import {
   INodeElementMappingHandler, INodeFindingHandler, NodeElementMappingHandlerName,
-  NodeFindingHandlerName
+  NodeFindingHandlerName, MappingResult
 } from '../handlers';
+
 
 @injectable()
 export class ElementCollectionFactory implements IElementCollectionFactory {
@@ -30,11 +31,12 @@ export class ElementCollectionFactory implements IElementCollectionFactory {
 
   private getBodyElements(classBodyNode: Node): IElement[] {
     const children = classBodyNode.getChildren();
-    const mainNodes = children.filter(f => f.kind === SyntaxKind.PropertyDeclaration || f.kind === SyntaxKind.MethodDeclaration);
 
-    const result = mainNodes.map(f => {
+    const mappingResults = children.map(f => {
       return this.nodeElementMappingHandler.mapToElement(f);
     });
-    return result;
+
+    var resultElements = mappingResults.filter(f => f.isMapped).map(f => f.mappedElement!);
+    return resultElements;
   }
 }

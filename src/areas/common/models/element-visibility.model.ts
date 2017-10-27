@@ -5,7 +5,7 @@ export class ElementVisibility {
   public constructor(public type: ElementVisibilityType) {
   }
 
-  public get configFormat(): string {
+  public get configKey(): string {
     return ElementVisibilityType[this.type].toLowerCase();
   }
 

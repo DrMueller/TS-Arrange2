@@ -4,7 +4,7 @@ import {
 
 import { LocatableElement } from '.';
 
-export class MethodElement extends LocatableElement {
+export class FieldElement extends LocatableElement {
 
   public constructor(
     elementVisibility: ElementVisibility,
@@ -14,6 +14,6 @@ export class MethodElement extends LocatableElement {
   }
 
   protected get configKindDescription(): string {
-    return 'method';
+    return 'field';
   }
 }

@@ -5,7 +5,7 @@ export class ElementLocation {
   public constructor(public type: ElementLocationType) {
   }
 
-  public get configFormat(): string {
+  public get configKey(): string {
     return ElementLocationType[this.type].toLowerCase();
   }
 

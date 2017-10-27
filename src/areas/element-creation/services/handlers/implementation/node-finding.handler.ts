@@ -13,9 +13,10 @@ export class NodeFindingHandler {
       throw new Error('Could not find Class keyword.');
     }
 
-    // TODO: There has to be a better way?
-    const result = classNode.getChildren().filter(f => f.kind === SyntaxKind.SyntaxList)[2];
-    return result;
+    const classChildren = classNode.getChildren();
+    const syntaxElements = classChildren.filter(f => f.kind === SyntaxKind.SyntaxList);
+    const bodyNode = syntaxElements[syntaxElements.length -1];
+    return bodyNode;
   }
 
   private getFlatNodes(...nodes: Node[]): Node[] {

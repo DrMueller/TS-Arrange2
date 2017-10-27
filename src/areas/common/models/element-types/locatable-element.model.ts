@@ -3,9 +3,10 @@ import {
   ElementLocation, ElementLocationType, ElementVisibility
 } from '../../../common/models';
 
-export class ConstructorElement implements IElement {
+export abstract class LocatableElement implements IElement {
   constructor(
     private elementVisibility: ElementVisibility,
+    private elementLocation: ElementLocation,
     private text: string
   ) {
   }
@@ -14,7 +15,9 @@ export class ConstructorElement implements IElement {
     return this.text;
   }
 
+  protected abstract get configKindDescription(): string;
+
   public getConfigKey(): string {
-    return `${this.elementVisibility.configKey}-constructor`;
+    return `${this.elementVisibility.configKey}-${this.elementLocation.configKey}-${this.configKindDescription}`;
   }
 }

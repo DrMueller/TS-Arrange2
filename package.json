@@ -38,13 +38,13 @@
     "test": "node ./node_modules/vscode/bin/test"
   },
   "dependencies": {
+    "inversify": "4.3.0",
     "lodash": "^4.17.4",
     "reflect-metadata": "^0.1.10",
-    "sinon": "^2.1.0",
-    "inversify": "4.3.0"
+    "sinon": "^2.1.0"
   },
   "devDependencies": {
-    "@types/lodash": "^4.14.61",
+    "@types/lodash": "^4.14.80",
     "@types/mocha": "^2.2.32",
     "@types/node": "^6.0.40",
     "@types/sinon": "2.1.2",
