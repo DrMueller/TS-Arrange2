@@ -17,6 +17,7 @@ export class FileArragementService implements IFileArrangemengService {
   ) { }
 
   public async arrangeOnCurrentDocumentAsync(): Promise<void> {
+    debugger;
     const activeSourceFile = this.editorService.createSourceFileFromActiveDocument();
     const elements = this.elementCollectionFactory.createFromSourceFile(activeSourceFile);
     const configuration = await this.configurationFactory.createConfigurationAsync();
