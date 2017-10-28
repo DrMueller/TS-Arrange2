@@ -1,5 +1,3 @@
-import { Dictionary } from 'lodash';
-
 import { ElementBlock } from '.';
 import { IElement } from '../../common/models';
 
@@ -12,7 +10,6 @@ export class SortedElementCollection {
   }
 
   public addUnknownElements(elements: IElement[]): void {
-    const sortedByName = this.sortElementsByName(elements);
     this._unknownElements.push(...elements);
   }
 

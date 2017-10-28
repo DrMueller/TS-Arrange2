@@ -1,5 +1,4 @@
 import { IElement } from '..';
-import { ElementLocation, ElementLocationType, ElementVisibility } from '../../../common/models';
 
 export class UnknownElement implements IElement {
   public getConfigKey(): string {
@@ -12,5 +11,4 @@ export class UnknownElement implements IElement {
 
   public constructor(private text: string) {
   }
-
 }

@@ -1,7 +1,5 @@
 import { IElement } from '.';
 
-import { Maybe, MaybeFactory } from '../../../infrastructure/language-extensions/maybe';
-
 export class ElementCollection {
   constructor(private _bodyElements: IElement[], private textBeforeClassBody: string, private textAfterClassBody: string) {
   }

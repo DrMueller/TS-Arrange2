@@ -5,7 +5,7 @@ import { IElementCollectionFactory } from '..';
 import { IElement, ElementCollection } from '../../../common/models';
 import {
   INodeElementMappingHandler, INodeFindingHandler, NodeElementMappingHandlerName,
-  NodeFindingHandlerName, MappingResult
+  NodeFindingHandlerName
 } from '../handlers';
 
 

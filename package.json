@@ -2,7 +2,7 @@
   "name": "ts-arrange",
   "enableProposedApi": true,
   "displayName": "ts-arrange",
-  "description": "TypeScript code anrrangement",
+  "description": "TypeScript code arrangement",
   "version": "0.0.1",
   "publisher": "DrMueller",
   "engines": {
@@ -41,15 +41,15 @@
     "inversify": "4.3.0",
     "lodash": "^4.17.4",
     "reflect-metadata": "^0.1.10",
-    "sinon": "^2.1.0"
+    "sinon": "^2.4.1"
   },
   "devDependencies": {
     "@types/lodash": "^4.14.80",
     "@types/mocha": "^2.2.32",
-    "@types/node": "^6.0.40",
+    "@types/node": "6.0.66",
     "@types/sinon": "2.1.2",
     "mocha": "^2.3.3",
-    "typescript": "2.5.3",
+    "typescript": "^2.5.3",
     "vscode": "1.1.5"
   },
   "icon": "assets/T.PNG"

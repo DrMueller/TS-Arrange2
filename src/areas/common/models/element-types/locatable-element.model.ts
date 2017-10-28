@@ -1,7 +1,5 @@
 import { IElement } from '..';
-import {
-  ElementLocation, ElementLocationType, ElementVisibility
-} from '../../../common/models';
+import { ElementLocation, ElementVisibility } from '../../../common/models';
 
 export abstract class LocatableElement implements IElement {
   constructor(

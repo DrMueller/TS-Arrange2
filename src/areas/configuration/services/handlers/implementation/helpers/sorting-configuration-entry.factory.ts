@@ -1,7 +1,5 @@
 import { SortingConfigurationEntry } from '../../../../models';
 
-import { ElementLocation, ElementVisibility, ElementLocationType } from '../../../../../common/models';
-
 export class SortingConfigurationEntryFactory {
   public static parseFromLine(line: string, sequence: number): SortingConfigurationEntry {
     const trimmedLine = this.trimLine(line);

@@ -1,8 +1,5 @@
-import {
-  ElementLocation, ElementLocationType, ElementVisibility
-} from '../../../common/models';
-
 import { LocatableElement } from '.';
+import { ElementLocation, ElementVisibility } from '../../../common/models';
 
 export class FieldElement extends LocatableElement {
 

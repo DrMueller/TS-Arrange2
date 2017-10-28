@@ -2,15 +2,13 @@ import { injectable } from 'inversify';
 import * as _ from 'lodash';
 
 import { ISortingHandler } from '..';
-import { ElementCollection, IElement } from '../../../../common/models';
+import { ElementCollection } from '../../../../common/models';
 import { Configuration } from '../../../../configuration';
 import { ElementBlock, SortedElementCollection } from '../../../models';
 
 @injectable()
 export class SortingHandler implements ISortingHandler {
   sortElementsByConfiguration(elements: ElementCollection, configuration: Configuration): void {
-    const sortedArray = new Array<Array<IElement>>();
-
     const grpedElements = _.groupBy(elements.bodyElements, f => f.getConfigKey());
     const elementAreaKeys = Object.keys(grpedElements);
     const sortedElementsCol = new SortedElementCollection();
@@ -29,5 +27,4 @@ export class SortingHandler implements ISortingHandler {
     const sortedElements = sortedElementsCol.sortAndGetFlatList();
     elements.overwriteBodyElements(sortedElements);
   }
-
 }

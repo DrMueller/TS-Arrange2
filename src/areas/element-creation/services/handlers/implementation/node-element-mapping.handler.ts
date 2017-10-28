@@ -3,10 +3,10 @@ import { getCombinedModifierFlags, ModifierFlags, Node, SyntaxKind } from 'types
 
 import { INodeElementMappingHandler, MappingResult } from '..';
 import {
-  ElementLocation, ElementLocationType, ElementVisibility, ElementVisibilityType, IElement
+  ElementLocation, ElementLocationType, ElementVisibility, ElementVisibilityType
 } from '../../../../common/models';
 import {
-  ConstructorElement, MethodElement, FieldElement, UnknownElement
+  ConstructorElement, FieldElement, MethodElement, UnknownElement
 } from '../../../../common/models/element-types';
 
 @injectable()
