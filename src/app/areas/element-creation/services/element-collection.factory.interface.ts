@@ -1,9 +1,9 @@
 import { ElementCollection } from '../../common/models';
 
-import { SourceFile } from 'typescript';
+import { ISourceFileProxy } from '../../document-handling';
 
 export const ElementCollectionFactoryName: string = 'IElementCollectionFactory';
 
 export interface IElementCollectionFactory {
-  createFromSourceFile(sourceFile: SourceFile): ElementCollection;
+  createFromSourceFile(sourceFileProxy: ISourceFileProxy): ElementCollection;
 }

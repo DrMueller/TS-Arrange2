@@ -1,16 +1,19 @@
 import { injectable } from 'inversify';
-import * as ts from 'typescript';
-import { window, Range, Position } from 'vscode';
+import { createSourceFile, ScriptTarget } from 'typescript';
+import { Position, Range, window } from 'vscode';
 
+import { SourceFileProxy } from '.';
+import { ISourceFileProxy } from '..';
 import { IEditorService } from '../editor.service.interface';
 
 @injectable()
 export class EditorService implements IEditorService {
-  createSourceFileFromActiveDocument(): ts.SourceFile {
+  createSourceFileFromActiveDocument(): ISourceFileProxy {
     const editor = window.activeTextEditor;
     const document = editor!.document;
 
-    const result = ts.createSourceFile(document.fileName, document.getText(), ts.ScriptTarget.Latest, true);
+    const sourceFile = createSourceFile(document.fileName, document.getText(), ScriptTarget.Latest, true);
+    const result = new SourceFileProxy(sourceFile);
     return result;
   }
 

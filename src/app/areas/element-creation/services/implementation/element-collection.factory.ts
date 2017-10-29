@@ -1,5 +1,5 @@
 import { inject, injectable } from 'inversify';
-import { Node, SourceFile } from 'typescript';
+import { Node } from 'typescript';
 
 import { IElementCollectionFactory } from '..';
 import { IElement, ElementCollection } from '../../../common/models';
@@ -8,20 +8,20 @@ import {
   NodeFindingHandlerName
 } from '../handlers';
 
+import { ISourceFileProxy } from '../../../document-handling';
 
 @injectable()
 export class ElementCollectionFactory implements IElementCollectionFactory {
-
   constructor(
     @inject(NodeElementMappingHandlerName) private nodeElementMappingHandler: INodeElementMappingHandler,
     @inject(NodeFindingHandlerName) private nodeFindingHandler: INodeFindingHandler,
   ) { }
 
-  public createFromSourceFile(sourceFile: SourceFile): ElementCollection {
-    const classBodyNode = this.nodeFindingHandler.findClassBodyNode(sourceFile);
+  public createFromSourceFile(sourceFileProxy: ISourceFileProxy): ElementCollection {
+    const classBodyNode = this.nodeFindingHandler.findClassBodyNode(sourceFileProxy);
     const bodyElements = this.getBodyElements(classBodyNode);
 
-    const fullText = sourceFile.getFullText();
+    const fullText = sourceFileProxy.getFullText();
     const textBeforeBody = fullText.substr(0, classBodyNode.pos);
     const textAfterBody = fullText.substr(classBodyNode.end, fullText.length);
 

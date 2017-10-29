@@ -5,6 +5,7 @@ export class IocContainerSingleton {
 
   public static resolve<T>(serviceIdentifier: string): T {
     const result = this._container.get<T>(serviceIdentifier);
+
     return result;
   }
 

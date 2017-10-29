@@ -35,9 +35,10 @@
     "reflect-metadata": "^0.1.10"
   },
   "devDependencies": {
-    "typescript": "^2.5.3",
-    "vscode": "^1.1.5",
+    "@types/mocha": "^2.2.42",
     "@types/node": "^7.0.43",
-    "@types/mocha": "^2.2.42"
+    "moq.ts": "^2.5.2",
+    "typescript": "^2.5.3",
+    "vscode": "^1.1.5"
   }
 }

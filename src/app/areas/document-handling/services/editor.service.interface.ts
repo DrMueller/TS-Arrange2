@@ -1,8 +1,7 @@
-import * as ts from 'typescript';
-
+import { ISourceFileProxy } from '..';
 export const EditorServiceName: string = 'IEditorService';
 
 export interface IEditorService {
-  createSourceFileFromActiveDocument(): ts.SourceFile;
+  createSourceFileFromActiveDocument(): ISourceFileProxy;
   writeTextToActiveDocument(text: string): void;
 }

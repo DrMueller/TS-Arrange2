@@ -16,5 +16,6 @@ export class IocInitializationService {
     mh.DocumentHandlingMappingHandler.applyMappings(container);
     mh.ConfigurationMappingHandler.applyMappings(container);
     mh.ElementCreationMappingHandler.applyMappings(container);
+    mh.ElementSortingMappingHandler.applyMappings(container);
   }
 }
