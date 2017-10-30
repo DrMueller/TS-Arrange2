@@ -1,16 +1,61 @@
-# Path Intellisense
-Visual Studio Code plugin for Typescript, which sorts elements within a class.
+# TS-Arrange2
+A plugin for Typescript, which arranges elements within a class.
 
 ## Installation
-In the command palette (cmd-shift-p) select Install Extension and choose TS-Arrange2.
+On the extensions tab, search for *TS-Arrange2* and install it.
+
+## Features
+### Genal
+This plugin arranges elements within a class by the following attributes attributes:
+- Visibility
+- Location (Static / Instance)
+- Kind (Property, Field, Constructor)
+
+### Sorting algorithm
+- The sorting of the blocks is determinated by the TSLint rule __member-ordering__
+- Within each element block, the members are ordered by their name
+- Elements, which can't be associated, are set at the end of the class
+
+## Limitations
+The logic expects a member-ordering configuration with the exact declaration, for example:
+
+```
+"member-ordering": [
+      true,
+      {
+        "order": [
+          "public-static-field",
+          "public-instance-field",
+          "protected-static-field",
+          "protected-instance-field",
+          "private-static-field",
+          "private-instance-field",
+          "public-constructor",
+          "protected-constructor",
+          "private-constructor",
+          "public-static-method",
+          "public-instance-method",
+          "protected-static-method",
+          "protected-instance-method",
+          "private-static-method",
+          "private-instance-method"
+        ]
+      }
+    ],
+```
 
 ## Usage
+### Shortcut
+1. Navigate to the desired Typescript Class
+1. Use __ctrl+shift+a__ to invoke the command
 
+### Command Palette
+1. Navigate to the desired Typescript Class
+1. In the command palette(ctrl+shift+p), enter *Arrange File*
 
 ## Contributing
 If you have any questions, fixes or enhancements, please create a pull request or an issue.
 [Github](https://github.com/DrMueller/TS-Arrange2)
-
 
 ## History
 Please see the changelog.

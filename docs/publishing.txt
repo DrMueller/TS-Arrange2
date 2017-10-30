@@ -1,5 +1,0 @@
---> https://code.visualstudio.com/docs/extensions/publish-extension
-
-vsce publish minor
-
-major, minor, or patch.
