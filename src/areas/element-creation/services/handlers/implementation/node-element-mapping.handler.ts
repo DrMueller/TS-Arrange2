@@ -48,7 +48,8 @@ export class NodeElementMappingHelper implements INodeElementMappingHandler {
 
     const modifierFlags = getCombinedModifierFlags(node);
 
-    if (modifierFlags === ModifierFlags.Static) {
+    // tslint:disable-next-line:no-bitwise
+    if (modifierFlags & ModifierFlags.Static) {
       locationType = ElementLocationType.Static;
     } else {
       locationType = ElementLocationType.Instance;
@@ -66,10 +67,10 @@ export class NodeElementMappingHelper implements INodeElementMappingHandler {
     // tslint:disable-next-line:no-bitwise
     if (modifierFlags & ModifierFlags.Public) {
       visibilityType = ElementVisibilityType.Public;
-    // tslint:disable-next-line:no-bitwise
+      // tslint:disable-next-line:no-bitwise
     } else if (modifierFlags & ModifierFlags.Protected) {
       visibilityType = ElementVisibilityType.Protected;
-    // tslint:disable-next-line:no-bitwise
+      // tslint:disable-next-line:no-bitwise
     } else if (modifierFlags & ModifierFlags.Private) {
       visibilityType = ElementVisibilityType.Private;
     } else {
