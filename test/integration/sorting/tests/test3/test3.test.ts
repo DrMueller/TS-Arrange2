@@ -4,7 +4,7 @@ import { ClassFixture, LintConfigFixture, ClassResult } from './assets';
 
 import { SortingTestingHandler } from '../../infrastructure';
 
-describe('Integration Test 1', () => {
+describe('Integration Test 3', () => {
   let sortingTestHandler: SortingTestingHandler;
 
   beforeEach(() => {

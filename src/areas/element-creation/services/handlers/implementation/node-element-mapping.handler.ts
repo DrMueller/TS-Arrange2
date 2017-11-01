@@ -27,7 +27,7 @@ export class NodeElementMappingHelper implements INodeElementMappingHandler {
       return MappingResult.createdMapped(propertyElement);
     }
 
-    // We unite some kinds under the methods
+    // We unite some kinds as methods
     if (this.checkIfNodeIsMethodType(node)) {
       const methodElement = new MethodElement(visibility, location, nodeText);
       return MappingResult.createdMapped(methodElement);
