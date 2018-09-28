@@ -43,7 +43,7 @@
         "test": "npm run compile && node ./node_modules/vscode/bin/test",
         "git-clean": "git reset --hard",
         "git-config": "git config --global user.email \"matthiasm@live.de\" && git config --global user.name \"Matthias Mueller\"",
-        "publish": "vsce publish",
+        "publish": "vsce publish 1.0.28",
         "lint": "tslint -c tslint.json 'src/**/*.ts'"
     },
     "dependencies": {
