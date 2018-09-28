@@ -42,7 +42,7 @@
         "postinstall": "node ./node_modules/vscode/bin/install",
         "test": "npm run compile && node ./node_modules/vscode/bin/test",
         "git-clean": "git reset --hard",
-        "publish-minor": "vsce publish minor -p --vscepat",
+        "publish-minor": "vsce publish minor",
         "lint": "tslint -c tslint.json 'src/**/*.ts'"
     },
     "dependencies": {
