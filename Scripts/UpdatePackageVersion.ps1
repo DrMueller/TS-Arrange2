@@ -4,7 +4,7 @@ param (
 
 function getPackageFiles() {
   $packageFiles = New-Object System.Collections.Generic.List[System.IO.FileInfo]
-  $libPackages = Get-ChildItem -File ($PSScriptRoot + '/../projects/package.json') -Recurse -Force
+  $libPackages = Get-ChildItem -File ($PSScriptRoot + '/../package.json') -Recurse -Force
 
   foreach ($libPackage in $libPackages) {
     $packageFiles.Add($libPackage)
