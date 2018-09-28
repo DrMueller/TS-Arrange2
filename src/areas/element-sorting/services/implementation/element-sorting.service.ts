@@ -18,12 +18,12 @@ export class ElementSortingService implements IElementSortingService {
     elementAreaKeys.forEach(key => {
       const blockElements = grpedElements[key];
       const maybeConfigEntry = configuration.tryGetConfigEntry(key);
-      maybeConfigEntry.whenSome(config => {
-        sortedElementsCol.addKnownBlock(new ElementBlock(blockElements, config.sequence));
-      });
-      maybeConfigEntry.whenNone(() => {
-        sortedElementsCol.addUnknownElements(blockElements);
-      });
+      maybeConfigEntry.evaluate(config => {
+          sortedElementsCol.addKnownBlock(new ElementBlock(blockElements, config.sequence));
+        },
+        () => {
+          sortedElementsCol.addUnknownElements(blockElements);
+        });
     });
 
     const sortedElements = sortedElementsCol.sortAndGetFlatList();

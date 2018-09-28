@@ -45,6 +45,7 @@
         "lint": "tslint -c tslint.json 'src/**/*.ts'"
     },
     "dependencies": {
+        "@drmueller/language-extensions": "^2.0.3",
         "inversify": "4.3.0",
         "lodash": "^4.17.4",
         "reflect-metadata": "^0.1.10",

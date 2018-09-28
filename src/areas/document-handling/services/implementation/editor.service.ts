@@ -27,7 +27,7 @@ export class EditorService implements IEditorService {
 
     textEditor.edit(f => {
       f.delete(new Range(0, 0, textEditor.document.lineCount, textEditor.document.getText().length));
-    }, textEditOptions).then(f => {
+    }, textEditOptions).then(_ => {
       textEditor.edit(t => {
         t.insert(new Position(0, 0), text);
       });

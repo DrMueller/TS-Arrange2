@@ -1,16 +1,16 @@
 import { SortingConfigurationEntry } from '.';
-import { Maybe, MaybeFactory } from '../../../infrastructure/language-extensions/maybe';
+import { IMaybe, Maybe } from '@drmueller/language-extensions';
 
 export class Configuration {
   constructor(private sortingConfigEntries: SortingConfigurationEntry[]) {
   }
 
-  public tryGetConfigEntry(key: string): Maybe<SortingConfigurationEntry> {
+  public tryGetConfigEntry(key: string): IMaybe<SortingConfigurationEntry> {
     const entry = this.sortingConfigEntries.find(f => f.configKey === key);
     if (entry) {
-      return MaybeFactory.createSome(entry);
+      return Maybe.CreateSome(entry);
     }
 
-    return MaybeFactory.createNone();
+    return Maybe.CreateNone();
   }
 }
