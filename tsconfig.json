@@ -11,6 +11,7 @@
     "noImplicitReturns": true,
     "forceConsistentCasingInFileNames": true,
     "noStrictGenericChecks": false,
+    "noUnusedParameters": true,
     "lib": [
       "es6"
     ],

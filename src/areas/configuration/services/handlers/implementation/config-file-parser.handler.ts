@@ -34,8 +34,6 @@ export class ConfigFileParser implements IConfigFileParser {
   }
 
   private parseConfigLines(tsLintContent: string): SortingConfigurationEntry[] {
-
-    debugger;
     const result = new Array<SortingConfigurationEntry>();
     const configString = this.parseMemberOrderingRule(tsLintContent);
     const configLines = configString.split('\n');
