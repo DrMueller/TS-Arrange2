@@ -41,7 +41,7 @@
         "watch": "tsc -watch -p ./",
         "postinstall": "node ./node_modules/vscode/bin/install",
         "test": "npm run compile && node ./node_modules/vscode/bin/test",
-        "git-clean": "git add . && git commit",
+        "git-clean": "git reset --hard",
         "publish-minor": "vsce publish minor",
         "lint": "tslint -c tslint.json 'src/**/*.ts'"
     },
