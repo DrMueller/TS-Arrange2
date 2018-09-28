@@ -16,9 +16,6 @@
     ],
     "sourceMap": true,
     "rootDir": ".",
-    "types": [
-      "reflect-metadata"
-    ],
     "emitDecoratorMetadata": true
   },
   "exclude": [
