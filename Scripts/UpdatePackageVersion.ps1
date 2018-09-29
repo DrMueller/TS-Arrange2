@@ -14,31 +14,17 @@ function getPackageFiles() {
 }
 
 # ------------ Core Start
-function getModuleFile([string]$fileName, [string]$subPath = "Common") {
-  $filePath = $PSScriptRoot
-  $filePath = Split-Path -Path $filePath -Parent
-  $fileName = $($filePath + "/" + $subPath + "/" + $fileName + ".psm1")
-  return $fileName
-}
-
 function loadModules() {
   Import-Module $($PSScriptRoot + "/Utils.psm1") -Force -Verbose
 }
 # ------------ Core End
 
 loadModules
+$parentPath = Split-Path -Path $PSScriptRoot -Parent
+Write-Host 'Updating' $parentPath
 
-$packageFiles = getPackageFiles
+Set-Location $parentPath
+git add .
+git commit -am 'auto'
 
-foreach ($packageFile in $packageFiles) {
-  Write-Host 'Updating' $packageFile
-
-  $directoryName = [System.IO.Path]::GetDirectoryName($packageFiles);
-  Set-Location $directoryName
-
-  # Assure git folder is clean
-  git add .
-  git commit -am 'auto'
-
-  npm version $buildVersion
-}
+npm version $buildVersion
