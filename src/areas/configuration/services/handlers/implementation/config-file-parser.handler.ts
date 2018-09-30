@@ -6,31 +6,10 @@ import { SortingConfigurationEntryFactory } from './helpers';
 
 @injectable()
 export class ConfigFileParser implements IConfigFileParser {
+
   public parseLintConfiguration(tsLintContent: string): Configuration {
     const configEntries = this.parseConfigLines(tsLintContent);
     return new Configuration(configEntries);
-  }
-
-  private parseMemberOrderingRule(tsLintContent: string): string {
-    const startIndex = tsLintContent.indexOf('"member-ordering"');
-
-    let result = '';
-    let foundClosingBracket = 0;
-
-    for (let i = startIndex; i <= tsLintContent.length; i++) {
-      const curentChar = tsLintContent[i];
-      result += curentChar;
-
-      if (curentChar === ']') {
-        foundClosingBracket++;
-      }
-
-      if (foundClosingBracket === 2) {
-        break;
-      }
-    }
-
-    return result;
   }
 
   private parseConfigLines(tsLintContent: string): SortingConfigurationEntry[] {
@@ -51,6 +30,28 @@ export class ConfigFileParser implements IConfigFileParser {
 
       const configLine = SortingConfigurationEntryFactory.parseFromLine(currentLine, lineSequence++);
       result.push(configLine);
+    }
+
+    return result;
+  }
+
+  private parseMemberOrderingRule(tsLintContent: string): string {
+    const startIndex = tsLintContent.indexOf('"member-ordering"');
+
+    let result = '';
+    let foundClosingBracket = 0;
+
+    for (let i = startIndex; i <= tsLintContent.length; i++) {
+      const curentChar = tsLintContent[i];
+      result += curentChar;
+
+      if (curentChar === ']') {
+        foundClosingBracket++;
+      }
+
+      if (foundClosingBracket === 2) {
+        break;
+      }
     }
 
     return result;
