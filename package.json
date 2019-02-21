@@ -52,7 +52,7 @@
         "lodash": "^4.17.4",
         "reflect-metadata": "^0.1.10",
         "typescript": "^2.5.3",
-        "vscode": "^1.1.5"
+        "vscode": "1.1.29"
     },
     "devDependencies": {
         "@types/mocha": "^2.2.42",
@@ -61,7 +61,7 @@
         "tslint": "^5.11.0",
         "typescript": "^2.5.3",
         "vsce": "1.51.0",
-        "vscode": "^1.1.5"
+        "vscode": "1.1.29"
     },
     "icon": "assets/T.PNG"
 }
