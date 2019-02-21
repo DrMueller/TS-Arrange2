@@ -8,9 +8,9 @@ export class Configuration {
   public tryGetConfigEntry(key: string): IMaybe<SortingConfigurationEntry> {
     const entry = this.sortingConfigEntries.find(f => f.configKey === key);
     if (entry) {
-      return Maybe.CreateSome(entry);
+      return Maybe.createSome(entry);
     }
 
-    return Maybe.CreateNone();
+    return Maybe.createNone();
   }
 }
