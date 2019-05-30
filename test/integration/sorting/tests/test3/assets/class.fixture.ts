@@ -8,8 +8,8 @@ export class Organisation {
   public coName: string | undefined = undefined;
 
   @ConstructableProperty(Individual)
-  public individual: Individual | undefined = undefined;
+  public individuals: Individual[] | undefined = undefined;
 
   @ConstructableProperty(Individual)
-  public individuals: Individual[] | undefined = undefined;
+  public individual: Individual | undefined = undefined;
 }`;

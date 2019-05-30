@@ -3,11 +3,12 @@ import { getCombinedModifierFlags, ModifierFlags, Node, SyntaxKind } from 'types
 
 import { INodeElementMappingHandler, MappingResult } from '..';
 import {
-  ElementLocation, ElementLocationType, ElementVisibility, ElementVisibilityType
+  ElementLocationBase, ElementVisibility, ElementVisibilityType
 } from '../../../../common/models';
 import {
-  ConstructorElement, FieldElement, MethodElement, UnknownElement
+  ConstructorElement, FieldElement, MethodElement, UnknownElement, GetPropertyElement, SetPropertyElement
 } from '../../../../common/models/element-types';
+import { StaticElementLocation, InstanceElementLocation } from '../../../../common/models/element-locations';
 
 @injectable()
 export class NodeElementMappingHelper implements INodeElementMappingHandler {
@@ -27,36 +28,34 @@ export class NodeElementMappingHelper implements INodeElementMappingHandler {
       return MappingResult.createdMapped(propertyElement);
     }
 
-    // We unite some kinds as methods
-    if (this.checkIfNodeIsMethodType(node)) {
+    if (node.kind === SyntaxKind.MethodDeclaration) {
       const methodElement = new MethodElement(visibility, location, nodeText);
       return MappingResult.createdMapped(methodElement);
+    }
+
+    if (node.kind === SyntaxKind.GetAccessor) {
+      const proprtyElement = new GetPropertyElement(visibility, location, nodeText);
+      return MappingResult.createdMapped(proprtyElement);
+    }
+
+    if (node.kind === SyntaxKind.SetAccessor) {
+      const proprtyElement = new SetPropertyElement(visibility, location, nodeText);
+      return MappingResult.createdMapped(proprtyElement);
     }
 
     const unknownElement = new UnknownElement(nodeText);
     return MappingResult.createdMapped(unknownElement);
   }
 
-  private checkIfNodeIsMethodType(node: Node): boolean {
-    return node.kind === SyntaxKind.MethodDeclaration
-      || node.kind === SyntaxKind.GetAccessor
-      || node.kind === SyntaxKind.SetAccessor;
-  }
-
-  private evaluateLocation(node: Node): ElementLocation {
-    let locationType: ElementLocationType;
-
+  private evaluateLocation(node: Node): ElementLocationBase {
     const modifierFlags = getCombinedModifierFlags(node);
 
     // tslint:disable-next-line:no-bitwise
     if (modifierFlags & ModifierFlags.Static) {
-      locationType = ElementLocationType.Static;
+      return new StaticElementLocation();
     } else {
-      locationType = ElementLocationType.Instance;
+      return new InstanceElementLocation();
     }
-
-    const result = new ElementLocation(locationType);
-    return result;
   }
 
   private evaluateVisibility(node: Node): ElementVisibility {

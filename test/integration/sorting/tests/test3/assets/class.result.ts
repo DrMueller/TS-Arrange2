@@ -4,12 +4,12 @@ export const ClassResult =
 import { Individual } from './individual.model';
 
 export class Organisation {
+  public coName: string | undefined = undefined;
+  public name: string | undefined = undefined;
 
   @ConstructableProperty(Individual)
   public individual: Individual | undefined = undefined;
 
   @ConstructableProperty(Individual)
   public individuals: Individual[] | undefined = undefined;
-  public coName: string | undefined = undefined;
-  public name: string | undefined = undefined;
 }`;

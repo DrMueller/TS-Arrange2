@@ -8,6 +8,10 @@ export class ConstructorElement implements IElement {
   ) {
   }
 
+  public getSortString(): string {
+    return this.text;
+  }
+
   public getText(): string {
     return this.text;
   }

@@ -1,12 +1,26 @@
 import { IElement } from '..';
-import { ElementLocation, ElementVisibility } from '../../../common/models';
+import { ElementLocationBase, ElementVisibility } from '../../../common/models';
 
 export abstract class LocatableElement implements IElement {
-  constructor(
+  protected constructor(
     private elementVisibility: ElementVisibility,
-    private elementLocation: ElementLocation,
+    private elementLocation: ElementLocationBase,
     private text: string
   ) {
+  }
+
+  public getConfigKey(): string {
+    return `${this.elementVisibility.configKey}-${this.elementLocation.configKey}-${this.configKindDescription}`;
+  }
+
+  public getSortString(): string {
+    let prefix = this.elementVisibility.configKey + ' ';
+    if (this.elementLocation.codeRepresentation !== '') {
+      prefix += this.elementLocation.codeRepresentation + ' ';
+    }
+
+    const text = this.text.trim().substring(prefix.length);
+    return text;
   }
 
   public getText(): string {
@@ -14,8 +28,4 @@ export abstract class LocatableElement implements IElement {
   }
 
   protected abstract get configKindDescription(): string;
-
-  public getConfigKey(): string {
-    return `${this.elementVisibility.configKey}-${this.elementLocation.configKey}-${this.configKindDescription}`;
-  }
 }

@@ -32,23 +32,26 @@ export class SortedElementCollection {
     });
 
     sortedBlocks.forEach(block => {
-      const sortedElements = this.sortElementsByName(block.elements);
+      const sortedElements = this.sortElements(block.elements);
       elements.push(...sortedElements);
     });
   }
 
   private sortAndAppendUnknownElements(elements: IElement[]): void {
-    const sortedUnknownElements = this.sortElementsByName(this._unknownElements);
+    const sortedUnknownElements = this.sortElements(this._unknownElements);
     elements.push(...sortedUnknownElements);
   }
 
-  private sortElementsByName(elements: IElement[]): IElement[] {
+  private sortElements(elements: IElement[]): IElement[] {
     const result = elements.sort((a, b) => {
-      if (a.getText() < b.getText()) {
+      const sortStringA = a.getSortString();
+      const sortStringB = b.getSortString();
+
+      if (sortStringA < sortStringB) {
         return -1;
       }
 
-      if (a.getText() > b.getText()) {
+      if (sortStringA > sortStringB) {
         return 1;
       }
 

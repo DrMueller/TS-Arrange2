@@ -13,5 +13,4 @@ export class ConfigFileReader implements IConfigFileReader {
     const result = textDocument.getText();
     return result;
   }
-
 }

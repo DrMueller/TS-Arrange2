@@ -1,11 +1,11 @@
 import { LocatableElement } from '.';
-import { ElementLocation, ElementVisibility } from '../../../common/models';
+import { ElementLocationBase, ElementVisibility } from '../../../common/models';
 
 export class MethodElement extends LocatableElement {
 
   public constructor(
     elementVisibility: ElementVisibility,
-    elementLocation: ElementLocation,
+    elementLocation: ElementLocationBase,
     text: string) {
     super(elementVisibility, elementLocation, text);
   }
