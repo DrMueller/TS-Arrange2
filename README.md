@@ -1,3 +1,10 @@
+# IMPORTANT UPDATE: Feedback wanted
+
+The current code uses a lot of string parsing. As the TypeScript API is evolving and would fit the need way better, I'm currently thinking of a rewrite.
+As it's no fun to rewrite without benefit, please send me your ideas or pain points as issues on GitHub. The following ideas are already gathered:
+- Consideration of comments
+- Management of properties
+
 # TS-Arrange2
 A plugin for Typescript, which arranges elements within a class.
 
