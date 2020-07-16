@@ -49,7 +49,7 @@
     "dependencies": {
         "@drmueller/language-extensions": "^2.0.3",
         "inversify": "4.3.0",
-        "lodash": "^4.17.4",
+        "lodash": "^4.17.19",
         "reflect-metadata": "^0.1.10",
         "typescript": "^2.5.3",
         "vscode": "1.1.29"
